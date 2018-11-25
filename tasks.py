@@ -10,6 +10,7 @@ def tests(context, coverage=True, pycodestyle=True, verbose=True):
     """Run test suit."""
     logger.info("Running test suit")
     context.run("nosetests -v --with-coverage")
+    context.run("pycodestyle --benchmark")
 
 
 @task
