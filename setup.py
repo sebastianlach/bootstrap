@@ -34,4 +34,9 @@ setup(
     tests_require=tests_requirements,
     zip_safe=False,
     include_package_data=True,
+    entry_points={
+        'console_scripts': [
+            'pybootstrap=pybootstrap.scripts.bootstrap:main',
+        ],
+    },
 )
