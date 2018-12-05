@@ -20,9 +20,10 @@ def docs(context, docs=False):
     if docs:
         context.run("echo sphinx-build")
 
-
 @task
 def clean(context, bytecode=False, extra=''):
     """Clean up cache files."""
     logger.info("Cleaning cache files")
-    context.run("rm -rf {}".format('**/*.pyc'))
+    context.run("find . -type f -name \"*.py[co]\" -delete")
+    context.run("find . -type d -name \"__pycache__\" -exec rm -r {} +")
+    context.run("git clean -xdn")
