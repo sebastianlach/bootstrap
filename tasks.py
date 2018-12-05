@@ -22,8 +22,9 @@ def docs(context, docs=False):
 
 @task
 def clean(context, bytecode=False, extra=''):
-    """Clean up cache files."""
+    """Clean up ignored files and cache."""
     logger.info("Cleaning cache files")
     context.run("find . -type f -name \"*.py[co]\" -delete")
     context.run("find . -type d -name \"__pycache__\" -exec rm -r {} +")
-    context.run("git clean -xdn")
+    context.run("git clean -f -d")  # remove directories
+    context.run("git clean -f -X")  # remove ignored files
